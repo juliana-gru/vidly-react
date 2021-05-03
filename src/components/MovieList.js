@@ -1,31 +1,42 @@
 import React, { Component } from 'react';
-import { getMovies, deleteMovie } from '../services/fakeMovieService';
+import { getMovies } from '../services/fakeMovieService';
+import { paginate } from '../utils/paginate';
 
-import Like from './Like';
-// import Movie from './Movie';
-
+import Like from './common/Like';
+import Pagination from './common/Pagination';
 
 class MovieList extends Component {
   state = {
-    movies: getMovies()
-  };
+    movies: getMovies(),
+    pageSize: 4,
+    currentPage: 1
+  }
   
-  handleDelete = (movie) => { //either use arrow function or bind function to state
+  handleDelete = movie => { //either use arrow function or bind function to state
     const movies = this.state.movies.filter(m => m._id !== movie._id);
     this.setState({ movies });
   }
 
-  handleLike = (movie) => {
+  handleLike = movie => {
     const movies = [...this.state.movies];
     const index = movies.indexOf(movie);
     movies[index].liked = !movies[index].liked;
     this.setState({ movies });  
   }
 
+  handlePageChange = page => {
+    this.setState({ currentPage: page });
+  }
+
   render() {
-    const { length: count } = this.state.movies; 
+    const { length: count } = this.state.movies;
+    const { pageSize, currentPage, movies: allMovies } = this.state; 
+    
     if (count === 0) 
       return <p> There are no movies in the database.</p>
+    
+    const movies = paginate(allMovies, currentPage, pageSize)
+
     return (
       <>
         <p className="">Showing {count} in the database.</p>
@@ -42,7 +53,7 @@ class MovieList extends Component {
               </tr>
           </thead>
           <tbody>
-            {this.state.movies.map(movie => (
+            {movies.map(movie => (
               <tr key={movie._id}>
                 <td>{movie.title}</td>
                 <td>{movie.genre.name}</td>
@@ -53,7 +64,12 @@ class MovieList extends Component {
               </tr>            
             ))} 
           </tbody>        
-        </table>
+        </table>        
+        <Pagination 
+        onClick={this.handlePageChange} 
+        itemsCount={count} 
+        pageSize={pageSize}
+        currentPage={currentPage} />
       </>      
     )
   }
