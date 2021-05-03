@@ -1,11 +1,11 @@
 import './App.css';
-import MovieList from './components/MovieList';
+import Movies from './components/Movies';
 
 function App() {  
   
   return (
     <main className="container">
-      <MovieList />
+      <Movies />
     </main>
   );
 }
