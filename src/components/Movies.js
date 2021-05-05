@@ -48,39 +48,46 @@ class Movies extends Component {
     this.setState({ sortColumn });
   }
 
-  render() {
-    const { length: count } = this.state.movies;
+  getPagedData = () => {
     const { 
       pageSize, 
       currentPage, 
-      movies: allMovies, 
-      genres, 
+      sortColumn,
       selectedGenre,
-      sortColumn
+      movies: allMovies       
     } = this.state; 
-    
-    if (count === 0) 
-      return <p> There are no movies in the database.</p>
-    
+
     const filtered = selectedGenre && selectedGenre._id
       ? allMovies.filter(m => m.genre._id === selectedGenre._id) 
       : allMovies;
 
     const sorted = _.orderBy(filtered, [sortColumn.path], [sortColumn.order]);
 
-    const movies = paginate(sorted, currentPage, pageSize)
+    const movies = paginate(sorted, currentPage, pageSize);
+
+    return { totalCount: filtered.length, data: movies };
+  }
+
+  render() {    
+    const { length: count } = this.state.movies;
+    const { pageSize, currentPage, sortColumn } = this.state; 
+    
+    if (count === 0) 
+      return <p> There are no movies in the database.</p>
+    
+    const{ totalCount, data: movies} = this.getPagedData();
 
     return (
       <div className="row">
         <div className="col-3">
           <ListGroup 
-          items={genres} 
-          selectedItem={selectedGenre}
+          items={this.state.genres} 
+          selectedItem={this.state.selectedGenre}
           onItemSelect={this.handleGenreSelect} 
           />
         </div>
         <div className="col">
-          <p className="">Showing {filtered.length} in the database.</p>
+          <p className="">Showing {totalCount} in the database.</p>
           <MoviesTable 
             movies={movies}
             sortColumn={sortColumn} 
@@ -91,7 +98,7 @@ class Movies extends Component {
                   
           <Pagination 
             onClick={this.handlePageChange} 
-            itemsCount={filtered.length} 
+            itemsCount={totalCount} 
             pageSize={pageSize}
             currentPage={currentPage} 
           />
