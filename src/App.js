@@ -1,13 +1,13 @@
 import React from 'react';
-import { Switch, Route, Redirect } from 'react-router-dom'
-;
+import { Switch, Route, Redirect } from 'react-router-dom';
+
 import Movies from './components/Movies';
 import LoginForm from './components/LoginForm';
 import MovieForm from './components/MovieForm';
 import Customers from './components/Customers';
 import Rentals from './components/Rentals';
 import NotFound from './components/NotFound';
-import NavBar from './components/common/NavBar';
+import NavBar from './components/NavBar';
 import MovieDetails from './components/MovieDetails';
 
 import './App.css';
