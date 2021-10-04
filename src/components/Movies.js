@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
 
-import { getMovies } from '../services/fakeMovieService';
+import { getMovies, deleteMovie } from '../services/fakeMovieService';
 import { getGenres } from '../services/fakeGenreService';
 import { paginate } from '../utils/paginate';
 
 import Pagination from './common/Pagination';
 import ListGroup from './common/ListGroup';
 import MoviesTable from './MoviesTable';
+import { Link } from 'react-router-dom';
 
 class Movies extends Component {
   state = {
@@ -25,6 +26,7 @@ class Movies extends Component {
   }
 
   handleDelete = movie => { //either use arrow function or bind function to state
+    deleteMovie(movie);
     const movies = this.state.movies.filter(m => m._id !== movie._id);
     this.setState({ movies });
   }
@@ -72,11 +74,12 @@ class Movies extends Component {
     const { length: count } = this.state.movies;
     const { pageSize, currentPage, sortColumn } = this.state; 
     
+    
     if (count === 0) 
-      return <p> There are no movies in the database.</p>
+    return <p> There are no movies in the database.</p>
     
     const{ totalCount, data: movies} = this.getPagedData();
-
+    
     return (
       <div className="row">
         <div className="col-3">
@@ -87,7 +90,8 @@ class Movies extends Component {
           />
         </div>
         <div className="col">
-          <p className="">Showing {totalCount} in the database.</p>
+          <Link to="/movies/new" className="btn btn-primary" style={{ marginBottom: 20 }}>New Movie</Link>
+          <p>Showing {totalCount} in the database.</p>
           <MoviesTable 
             movies={movies}
             sortColumn={sortColumn} 
