@@ -1,13 +1,14 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
-import Movies from './components/Movies';
-import LoginForm from './components/LoginForm';
-import RegisterForm from './components/RegisterForm';
-import MovieForm from './components/MovieForm';
-import Customers from './components/Customers';
-import Rentals from './components/Rentals';
-import NotFound from './components/NotFound';
+import Movies from './pages/Movies';
+import LoginForm from './pages/LoginForm';
+import RegisterForm from './pages/RegisterForm';
+import Rentals from './pages/Rentals';
+import Customers from './pages/Customers';
+
+import MovieForm from './pages/MovieForm';
+import NotFound from './pages/NotFound';
 import NavBar from './components/NavBar';
 import MovieDetails from './components/MovieDetails';
 
