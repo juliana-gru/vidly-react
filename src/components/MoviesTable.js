@@ -18,7 +18,6 @@ class MoviesTable extends Component {
   
   render() {
     const { movies, onSort, sortColumn  } = this.props;
-
     return ( 
       <Table 
         columns={this.columns}

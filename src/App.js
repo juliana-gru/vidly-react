@@ -12,7 +12,7 @@ import NotFound from './pages/NotFound';
 import NavBar from './components/NavBar';
 import MovieDetails from './components/MovieDetails';
 
-import './App.css';
+// import './App.css';
 
 function App() {  
   

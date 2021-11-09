@@ -17,7 +17,7 @@ class TableBody extends Component {
   render() { 
     const { data, columns } = this.props;
     return ( 
-    <tbody>      
+    <tbody>     
       {data.map(item => 
       <tr key={item._id}>
         {columns.map(column => 
