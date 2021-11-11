@@ -1,0 +1,4 @@
+{
+  "apiEndpoint":"https://vidly-api-nodejs-mongodb-atlas.herokuapp.com/api",
+  "localhost":"http://localhost:3333/api"
+}
