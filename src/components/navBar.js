@@ -2,7 +2,6 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 const NavBar = ({ user }) => {  
-  console.log(user);
   return (
     <div className="navbar navbar-expand-lg navbar-light bg-light">
       <a className="navbar-brand">Vidly</a>

@@ -59,14 +59,12 @@ class MovieForm extends Form {
   doSubmit = async () => {
     // call the server    
     await saveMovie(this.state.data);
-    console.log('submitted');
     this.props.history.push('/movies')
   }
 
   render() {
     return (
       <div>
-        {console.log(this.state.data.genreId)}
         <h1>Movie Form</h1>
         <form onSubmit={this.handleSubmit}>
           {this.renderInput('title', 'Title')}

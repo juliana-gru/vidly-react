@@ -12,6 +12,7 @@ import MovieForm from './pages/MovieForm';
 import NotFound from './pages/NotFound';
 import NavBar from './components/NavBar';
 import MovieDetails from './components/MovieDetails';
+import ProtectedRoute from './components/common/ProtectedRoute';
 
 import auth from './services/authService';
 
@@ -35,9 +36,15 @@ function App() {
           <Route path="/register" component={RegisterForm}></Route>
           <Route path="/login" component={LoginForm}></Route>
           <Route path="/logout" component={Logout}></Route>
-          <Route path="/movies/:id" component={MovieForm}></Route>
-          <Route path="/movies/:id" component={MovieDetails} ></Route>
-          <Route path="/movies" component={Movies}></Route>
+
+          <ProtectedRoute path="/movies/:id" component ={MovieForm} />
+          
+          <Route path="/movies/:id" component={MovieDetails} />
+          
+          <Route 
+            path="/movies" 
+            render={props => <Movies {...props} user={user} />}>
+          </Route>
           <Route path="/customers" component={Customers} ></Route>
           <Route path="/rentals" component={Rentals} ></Route>        
           <Route path="/not-found" component={NotFound} ></Route> */
