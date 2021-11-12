@@ -1,30 +1,40 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
+
 import Movies from './pages/Movies';
 import LoginForm from './pages/LoginForm';
+import Logout from './pages/Logout';
 import RegisterForm from './pages/RegisterForm';
 import Rentals from './pages/Rentals';
 import Customers from './pages/Customers';
-
 import MovieForm from './pages/MovieForm';
 import NotFound from './pages/NotFound';
 import NavBar from './components/NavBar';
 import MovieDetails from './components/MovieDetails';
 
+import auth from './services/authService';
+
 // import './App.css';
 import 'react-toastify/dist/ReactToastify.css';
 
-function App() {  
+function App() {
+  const [ user, setUser ] = useState(null);
+  
+  useEffect(() => {
+    const user = auth.getCurrentUser();
+    setUser(user);
+  }, [])
   
   return (
     <React.Fragment>
       <ToastContainer />
-      <NavBar />
+      <NavBar user={user}/>
       <main className="container">
         <Switch>
           <Route path="/register" component={RegisterForm}></Route>
           <Route path="/login" component={LoginForm}></Route>
+          <Route path="/logout" component={Logout}></Route>
           <Route path="/movies/:id" component={MovieForm}></Route>
           <Route path="/movies/:id" component={MovieDetails} ></Route>
           <Route path="/movies" component={Movies}></Route>
