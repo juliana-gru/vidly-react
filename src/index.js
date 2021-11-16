@@ -4,13 +4,15 @@ import { BrowserRouter } from 'react-router-dom';
 
 import './index.css';
 import App from './App';
-import logger from './services/logService.js';
 
 
 import 'bootstrap/dist/css/bootstrap.css';
 import 'font-awesome/css/font-awesome.css';
 
-// logger.init();
+
+require('dotenv').config()
+console.log('ENV', process.env.REACT_APP_API_URL);
+console.log(process.env.PORT);
 
 ReactDOM.render(
   <BrowserRouter>
