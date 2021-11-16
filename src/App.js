@@ -10,13 +10,13 @@ import Rentals from './pages/Rentals';
 import Customers from './pages/Customers';
 import MovieForm from './pages/MovieForm';
 import NotFound from './pages/NotFound';
+
 import NavBar from './components/NavBar';
 import MovieDetails from './components/MovieDetails';
 import ProtectedRoute from './components/common/ProtectedRoute';
 
 import auth from './services/authService';
 
-// import './App.css';
 import 'react-toastify/dist/ReactToastify.css';
 
 function App() {

@@ -10,10 +10,6 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'font-awesome/css/font-awesome.css';
 
 
-require('dotenv').config()
-console.log('ENV', process.env.REACT_APP_API_URL);
-console.log(process.env.PORT);
-
 ReactDOM.render(
   <BrowserRouter>
     <App />
