@@ -6,8 +6,6 @@ import Movies from './pages/Movies';
 import LoginForm from './pages/LoginForm';
 import Logout from './pages/Logout';
 import RegisterForm from './pages/RegisterForm';
-import Rentals from './pages/Rentals';
-import Customers from './pages/Customers';
 import MovieForm from './pages/MovieForm';
 import NotFound from './pages/NotFound';
 
@@ -44,9 +42,7 @@ function App() {
           <Route 
             path="/movies" 
             render={props => <Movies {...props} user={user} />}>
-          </Route>
-          <Route path="/customers" component={Customers} ></Route>
-          <Route path="/rentals" component={Rentals} ></Route>        
+          </Route>   
           <Route path="/not-found" component={NotFound} ></Route> */
           <Redirect from="/" exact to="/movies" /> 
           <Redirect to="/not-found" /> 
