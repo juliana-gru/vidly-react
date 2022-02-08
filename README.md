@@ -22,5 +22,5 @@ As an admin, you're able to delete movies and others.
 
 ##
 
-This application is part of "Mastering React" and "The Complete Nodejs Course" by Programming with Mosh.
+This app is part of "Mastering React" and "The Complete Nodejs Course" by Code with Mosh.
 
